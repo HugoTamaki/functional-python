@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Ruby on Rails - Agilidade e rapidez no desenvolvimento Web</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <link rel="stylesheet" href="sky.css">
+    <link rel="stylesheet" href="test.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+    <script src="google-code-prettify/run_prettify.js"></script>
+    <link rel="stylesheet" href="google-code-prettify/prettify.css">
+    <link rel="stylesheet" href="google-code-prettify/desert.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+      h2 {
+        font-family: "Arial";
+        color: black;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section id="fragments" data-background="#FFD700">
+          <h1>Programação funcional com Python</h1><br/>
+          <h2>Maior produtividade com o paradigma funcional</h2>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h2>Quem sou eu</h2>
+
+          <ul>
+            <li>Desenvolvedor Ruby</li>
+            <li>Desenvolvedor JavaScript</li>
+            <li>Tutor de Construção de Páginas Web e Introdução a Informatica (CEDERJ)</li>
+            <li>Github: https://github.com/hugotamaki</li>
+          </ul>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>O que é programação funcional?</h3>
+
+          <p>Paradigma que enfatiza a aplicação de funções, ao contrário do paradigma imperativo, que enfatiza mudanças no estado do programa.</p>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Por que programação funcional?</h3>
+
+          <h4>Vantagens</h4>
+          <ul>
+            <li>Código fonte mais enxuto</li>
+            <li>Maior velocidade no desenvolvimento</li>
+            <li>Facilidade de implementação</li>
+          </ul>
+
+          <h4>Desvantagens</h4>
+          <ul>
+            <li>Não ser um paradigma muito difundido</li>
+            <li>Possibilidade de gerar código obscuro</li>
+          </ul>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Transforme usando map!</h3>
+
+          <div>
+            <h4>Sintaxe</h4>
+            <p class="syntax">map(function_to_apply, list_of_inputs)</p>
+          </div>
+
+          <div class="fragment">
+            <pre class="prettyprint">
+# imperativo
+names = ['Jose', 'Maria', 'Gabriel']
+names_length = []
+
+for name in names:
+  names_length.append(len(name))
+
+print names_length
+# [4, 5, 7]
+            </pre>
+          </div>
+
+          <div class="fragment">
+            <pre class="prettyprint">
+# funcional
+names = ['Jose', 'Maria', 'Gabriel']
+
+names_length = map(len, names)
+
+print names_length
+# [4, 5, 7]
+            </pre>
+          </div>
+
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Outro exemplo</h3>
+
+          <p>Dobrar todos os elementos</p>
+          <div>
+            <pre class="prettyprint">
+# imperativo
+numbers = [1, 2, 3, 4, 5, 6]
+doubles = []
+
+for num in numbers:
+  doubles.append(num * 2)
+
+print doubles
+# [2, 4, 6, 8, 10, 12]
+            </pre>
+          </div>
+
+          <div class="fragment">
+            <pre class="prettyprint">
+# funcional
+def double(x):
+  return x * 2
+
+numbers = [1, 2, 3, 4, 5, 6]
+
+doubles = map(double, numbers)
+
+print doubles
+# [2, 4, 6, 8, 10, 12]
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Ou ainda</h3>
+          <div>
+            <pre class="prettyprint">
+numbers = [1, 2, 3, 4, 5, 6]
+
+doubles = map(lambda x: x * 2, numbers)
+
+print doubles
+# [2, 4, 6, 8, 10, 12]
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>O que é o lambda?</h3>
+
+          <div>
+            <h4>Sintaxe</h4>
+            <p class="syntax">lambda arg1, arg2, arg3..., argN: expressão</p>
+          </div>
+
+          <div>
+            <p>O lambda no python permite a criação de funções anônimas!</p>
+            <pre class="prettyprint">
+# definição comum de função
+
+def double(x):
+  return x * 2
+
+# definição de função usando lambda
+
+double = lambda x: x * 2
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h4>Ou seja, podemos passar uma função já definida, ou defini-la na hora em que chamamos o map</h4>
+          <pre class="prettyprint">
+# definindo uma função nomeada
+def double(x):
+  return x * 2
+
+numbers = [1, 2, 3, 4, 5, 6]
+
+doubles = map(double, numbers)
+
+print doubles
+# [2, 4, 6, 8, 10, 12]
+
+<div class="fragment">
+# ou definindo uma função anônima
+numbers = [1, 2, 3, 4, 5, 6]
+
+doubles = map(lambda x: x * 2, numbers)
+
+print doubles
+# [2, 4, 6, 8, 10, 12]
+</div>
+          </pre>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Filtre elementos com Filter!</h3>
+
+          <div>
+            <h4>Sintaxe</h4>
+            <p class="syntax">filter(function_to_apply, list_of_inputs)</p>
+          </div>
+
+          <pre class="prettyprint">
+# imperativo
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+evens = []
+
+for num in numbers:
+  if num % 2 == 0:
+    evens.append(num)
+
+print evens
+# [2, 4, 6, 8]
+          </pre>
+
+          <pre class="prettyprint">
+# funcional
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+evens = filter(lambda x: x % 2 == 0, numbers)
+
+print evens
+# [2, 4, 6, 8]
+          </pre>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Combine items usando Reduce!</h3>
+
+          <div>
+            <h4>Sintaxe</h4>
+            <p class="syntax">reduce(function_to_apply, list_of_inputs, acc_initial_value)</p>
+          </div>
+
+          <div>
+            <pre class="prettyprint">
+# imperativo
+sum = 0
+
+numbers = [1, 2, 3, 4, 5, 6, 7]
+
+for num in numbers:
+  sum += num
+
+print sum
+# 28
+            </pre>
+          </div>
+
+          <div class="fragment">
+            <pre class="prettyprint">
+# funcional
+numbers = [1, 2, 3, 4, 5, 6, 7]
+
+sum = reduce(lambda a, x: a + x, numbers, 0)
+
+print sum
+# 28
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Outro exemplo</h3>
+          <p>Recuperando quantidade de substrings</p>
+          <pre class="prettyprint">
+sentences = ['Mary read a story to Sam and Isla.',
+             'Isla cuddled Sam.',
+             'Sam chortled.']
+
+sam_count = reduce(lambda a, x: a + x.count('Sam'),
+                   sentences,
+                   0)
+          </pre>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Desafio:</h3>
+          <p>Como modificar este algoritmo para o paradigma funcional usando map, filter e reduce?</p>
+
+          <div>
+            <pre class="prettyprint">
+people = [{'name': 'Mary', 'height': 160},
+          {'name': 'Isla', 'height': 80},
+          {'name': 'Sam'}]
+
+height_total = 0
+height_count = 0
+for person in people:
+  if 'height' in person:
+    height_total += person['height']
+    height_count += 1
+
+if height_count > 0:
+  average_height = height_total / height_count
+
+  print average_height
+  # 120
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Resposta</h3>
+
+          <pre class="prettyprint">
+people = [{'name': 'Mary', 'height': 160},
+          {'name': 'Isla', 'height': 80},
+          {'name': 'Sam'}]
+
+heights = map(lambda x: x['height'],
+            filter(lambda x: 'height' in x, people))
+
+if len(heights) > 0:
+  average_height = reduce(lambda acc, x: acc + x, heights, 0) / len(heights)
+  # 120
+          </pre>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Pipeline</h3>
+
+          <pre class="prettyprint">
+bands = [{'name': 'Hell Riders', 'country': 'UK', 'active': False},
+         {'name': 'Dragons Crown', 'country': 'Germany', 'active': False},
+         {'name': 'Crystal Illusion', 'country': 'Spain', 'active': True}]
+
+def format_bands(bands):
+  for band in bands:
+    band['country'] = 'Canada'
+    band['active'] = True
+    band['name_length'] = len(band['name'])
+
+format_bands(bands)
+
+print bands
+          </pre>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Como poderia ser</h3>
+
+          <pre class="prettyprint">
+from copy import deepcopy
+
+def change_country(elem):
+  elem['country'] = 'Canada'
+
+def set_active(elem):
+  elem['active'] = True
+
+def set_name_length(elem):
+  elem['name_length'] = len(elem['name'])
+
+def pipeline_formatter(functions, items):
+  data = deepcopy(items)
+  for function in functions:
+    map(function, data)
+  return data
+
+formatted = pipeline_formatter(
+  [
+    change_country,
+    set_active,
+    set_name_length
+  ],
+  bands
+)
+
+print formatted
+          </pre>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Brincando com outras linguagens...</h3>
+
+          <pre class="prettyprint">
+            # JavaScript
+            nums = [1, 2, 3]
+
+            nums.map(function(elem) {
+              return elem * 2
+            })
+
+            # Ruby
+
+            nums = [1, 2, 3]
+
+            nums.map { |elem| elem * 2 }
+
+            # Java (8)
+
+            List<int> nums = Array.asList(1, 2, 3);
+
+            nums
+              .stream()
+              .map(elem -> elem * 2)
+          </pre>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
