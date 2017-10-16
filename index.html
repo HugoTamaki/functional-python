@@ -351,6 +351,8 @@ print bands
         <section id="fragments" data-background="#FFD700">
           <h3>Como poderia ser</h3>
 
+          <p>Definindo as funções</p>
+
           <pre class="prettyprint">
 from copy import deepcopy
 
@@ -364,10 +366,23 @@ def set_name_length(elem):
   elem['name_length'] = len(elem['name'])
 
 def pipeline_formatter(functions, items):
+  def execute(functions, elem):
+    for function in functions:
+      function(elem)
   data = deepcopy(items)
-  for function in functions:
-    map(function, data)
+  map(lambda x: execute(functions, x), data)
   return data
+          </pre>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Como poderia ser</h3>
+
+          <p>Executando</p>
+
+          <pre class="prettyprint">
+bands = [{'name': 'Hell Riders', 'country': 'UK', 'active': False},
+         {'name': 'Dragons Crown', 'country': 'Germany', 'active': False},
+         {'name': 'Crystal Illusion', 'country': 'Spain', 'active': True}]
 
 formatted = pipeline_formatter(
   [
