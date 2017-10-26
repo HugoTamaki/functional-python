@@ -15,8 +15,8 @@ def set_name_length(elem):
 
 def pipeline_formatter(functions, items):
   def execute(functions, elem):
-    for function in functions:
-      function(elem)
+    map(lambda x: x(elem), functions)
+
   data = deepcopy(items)
   map(lambda x: execute(functions, x), data)
   return data
