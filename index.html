@@ -81,6 +81,113 @@
           </ul>
         </section>
         <section id="fragments" data-background="#FFD700">
+          <h3>Características</h3>
+
+          <h4>First-class functions</h4>
+
+          <p>Funções são valores</p>
+
+          <div>
+            <pre class="prettyprint">
+def my_func(a, b):
+  return a + b
+
+sum = my_func
+
+sum(3, 4)
+# 7
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Características</h3>
+
+          <h4>High-order functions</h4>
+
+          <p>Funções podem retornar funções...</p>
+
+          <div>
+            <pre class="prettyprint">
+def my_func():
+  def some_other_func(a, b):
+    return a + b
+  return some_other_func
+
+
+sum = my_func()
+
+sum(3, 4)
+# 7
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Características</h3>
+
+          <h4>High-order functions</h4>
+
+          <p>... ou receber funções como argumentos</p>
+
+          <div>
+            <pre class="prettyprint">
+def print_message(num):
+  print "Called from inside!"
+
+def my_func(func):
+  func()
+
+my_func(print_message)
+# Called from inside!
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Características</h3>
+
+          <h4>Pure functions</h4>
+
+          <p>Funções não devem alterar estados externos, apenas receber argumentos e não alterar variaveis globais</p>
+
+          <div>
+            <pre class="prettyprint">
+a = 0
+def increment():
+    global a
+    a += 1
+
+def increment(a):
+    return a + 1
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
+          <h3>Características</h3>
+
+          <h4>Closures</h4>
+
+          <p>Funções conseguem guardar dados em seu código</p>
+
+          <div>
+            <pre class="prettyprint">
+def print_msg(msg):
+  def printer():
+    print(msg)
+
+  return printer
+
+another = print_msg("Hello")
+
+del print_msg
+
+another()
+# Hello
+
+print_msg("Hello")
+# NameError: name 'print_msg' is not defined
+            </pre>
+          </div>
+        </section>
+        <section id="fragments" data-background="#FFD700">
           <h3>Transforme usando map!</h3>
 
           <div>
