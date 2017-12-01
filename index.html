@@ -152,11 +152,11 @@ my_func(print_message)
             <pre class="prettyprint">
 a = 0
 def increment():
-    global a
-    a += 1
+  global a
+  a += 1
 
 def increment(a):
-    return a + 1
+  return a + 1
             </pre>
           </div>
         </section>
@@ -214,7 +214,7 @@ print names_length
 # funcional
 names = ['Jose', 'Maria', 'Gabriel']
 
-names_length = map(len, names)
+names_length = list(map(len, names))
 
 print names_length
 # [4, 5, 7]
@@ -248,7 +248,7 @@ def double(x):
 
 numbers = [1, 2, 3, 4, 5, 6]
 
-doubles = map(double, numbers)
+doubles = list(map(double, numbers))
 
 print doubles
 # [2, 4, 6, 8, 10, 12]
@@ -261,7 +261,7 @@ print doubles
             <pre class="prettyprint">
 numbers = [1, 2, 3, 4, 5, 6]
 
-doubles = map(lambda x: x * 2, numbers)
+doubles = list(map(lambda x: x * 2, numbers))
 
 print doubles
 # [2, 4, 6, 8, 10, 12]
@@ -299,7 +299,7 @@ def double(x):
 
 numbers = [1, 2, 3, 4, 5, 6]
 
-doubles = map(double, numbers)
+doubles = list(map(double, numbers))
 
 print doubles
 # [2, 4, 6, 8, 10, 12]
@@ -308,7 +308,7 @@ print doubles
 # ou definindo uma função anônima
 numbers = [1, 2, 3, 4, 5, 6]
 
-doubles = map(lambda x: x * 2, numbers)
+doubles = list(map(lambda x: x * 2, numbers))
 
 print doubles
 # [2, 4, 6, 8, 10, 12]
@@ -341,7 +341,7 @@ print evens
 # funcional
 numbers = [1, 2, 3, 4, 5, 6, 7, 8]
 
-evens = filter(lambda x: x % 2 == 0, numbers)
+evens = list(filter(lambda x: x % 2 == 0, numbers))
 
 print evens
 # [2, 4, 6, 8]
@@ -428,8 +428,10 @@ people = [{'name': 'Mary', 'height': 160},
           {'name': 'Isla', 'height': 80},
           {'name': 'Sam'}]
 
-heights = map(lambda x: x['height'],
+heights = list(
+            map(lambda x: x['height'],
             filter(lambda x: 'height' in x, people))
+          )
 
 if len(heights) > 0:
   average_height = reduce(lambda acc, x: acc + x, heights, 0) / len(heights)
@@ -477,7 +479,7 @@ def pipeline_formatter(functions, items):
     for function in functions:
       function(elem)
   data = deepcopy(items)
-  map(lambda x: execute(functions, x), data)
+  list(map(lambda x: execute(functions, x), data))
   return data
           </pre>
         </section>
